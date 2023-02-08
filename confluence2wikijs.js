@@ -5,7 +5,12 @@ var HTMLParser = require('node-html-parser');
 
 const directoryPath = process.argv[2];
 const outDirectoryPath = process.argv[3];
-fs.mkdirSync(outDirectoryPath)
+try{
+    fs.mkdirSync(outDirectoryPath, { recursive: true })
+}catch(err){
+    console.log("Error creating: " + err)
+
+}
 
 fs.readdir(directoryPath, function (err, files) {
     //handling error
